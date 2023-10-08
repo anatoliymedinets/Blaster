@@ -13,7 +13,6 @@ AWeapon::AWeapon()
 	bReplicates = true;
 
 	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("WeaponMesh"));
-	// WeaponMesh->SetupAttachment(RootComponent);
 	SetRootComponent(WeaponMesh);
 
 	WeaponMesh->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
@@ -34,7 +33,7 @@ void AWeapon::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (AreaSphere && HasAuthority()) // the same - AreaSphere && GetLocalRole() == ENetRole::ROLE_Authority
+	if (AreaSphere && HasAuthority())
 	{
 		AreaSphere->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 		AreaSphere->SetCollisionResponseToChannel(ECollisionChannel::ECC_Pawn, ECollisionResponse::ECR_Overlap);
